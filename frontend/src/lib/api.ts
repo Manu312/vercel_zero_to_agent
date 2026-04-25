@@ -85,21 +85,27 @@ function getMockResponse(message: string, brandName: string): string {
   return template.replace(/\{brand\}/g, brandName)
 }
 
-// ─── API Service (mock → real backend swap) ───────────────────────────────────
+// ─── API Service ──────────────────────────────────────────────────────────────
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3001'
 
 export async function extractDNA(url: string): Promise<BrandDNA> {
-  // TODO: swap mock for real call when backend is ready
-  // const res = await fetch(`${BACKEND_URL}/api/extract-dna`, {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify({ url }),
-  // })
-  // return res.json()
+  const res = await fetch(`${BACKEND_URL}/api/agent/generate`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ url }),
+  })
 
-  // Simulate network delay
-  await new Promise((r) => setTimeout(r, 100))
-  return { ...MOCK_BRAND_DNA, brandProfile: { ...MOCK_BRAND_DNA.brandProfile, url } }
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}))
+    throw new Error(body.message || `Error del servidor: ${res.status}`)
+  }
+
+  const data = await res.json()
+  return {
+    brandProfile: data.brandProfile,
+    contentStrategy: data.contentStrategy,
+    extractedAt: data.extractedAt,
+  }
 }
 
 export async function sendChatMessage(
@@ -107,14 +113,7 @@ export async function sendChatMessage(
   history: ChatMessage[],
   dna: BrandDNA
 ): Promise<string> {
-  // TODO: swap mock for real streaming call when backend is ready
-  // const res = await fetch(`${BACKEND_URL}/api/chat`, {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify({ messages: history, brandDNA: dna, newMessage: message }),
-  // })
-  // return res.text()
-
+  // Chat uses mock until backend endpoint is added
   await new Promise((r) => setTimeout(r, 800 + Math.random() * 600))
   return getMockResponse(message, dna.brandProfile.name)
 }

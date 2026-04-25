@@ -17,7 +17,7 @@ const container = {
 
 const item = {
   hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { ease: 'easeOut', duration: 0.4 } },
+  show: { opacity: 1, y: 0, transition: { ease: 'easeOut' as const, duration: 0.4 } },
 }
 
 function PlatformIcon({ platform }: { platform: PlatformStrategy['platform'] }) {

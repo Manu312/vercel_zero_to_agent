@@ -4,9 +4,12 @@ import { z } from 'zod'
 import type { ScrapedSite } from '../schemas/scraped-site.js'
 
 const DnaResultSchema = z.object({
-  tone: z.string().describe('Tono de voz de la marca, ej: "profesional y cercano"'),
+  name: z.string().describe('Nombre exacto de la marca o empresa tal como aparece en el sitio'),
+  tagline: z.string().describe('Tagline o slogan principal de la marca. Si no hay uno explícito, inferilo del contenido.'),
+  description: z.string().describe('Descripción concisa de la marca en 1-2 oraciones que explique qué hace y para quién'),
+  tone: z.array(z.string()).describe('Tono de voz como array de 3-5 descriptores, ej: ["Técnico", "Confiado", "Minimalista"]'),
   values: z.array(z.string()).describe('Valores de marca como array de strings'),
-  archetype: z.string().describe('Arquetipo de marca: Hero, Sage, Creator, Explorer, etc.'),
+  archetype: z.string().describe('Arquetipo de marca: Hero, Sage, Creator, Explorer, Ruler, Caregiver, etc.'),
   industry: z.string().describe('Industria o sector al que pertenece la marca'),
   targetAudience: z.string().describe('Audiencia objetivo de la marca'),
   keyMessages: z
@@ -31,7 +34,7 @@ Headings H2: ${site.h2.slice(0, 5).join(' | ')}
 Párrafos principales:
 ${textContent}
 
-Extraé con precisión: tono de voz, valores de marca, arquetipo, industria, audiencia objetivo y key messages.`,
+Extraé con precisión: nombre de la marca, tagline, descripción, tono de voz (como array de descriptores), valores, arquetipo, industria, audiencia objetivo y key messages.`,
   })
 
   return object

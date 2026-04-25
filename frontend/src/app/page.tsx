@@ -13,13 +13,19 @@ export default function Home() {
   const [phase, setPhase] = useState<AppPhase>('landing')
   const [url, setUrl] = useState('')
   const [dna, setDna] = useState<BrandDNA | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
   async function handleURLSubmit(submittedUrl: string) {
     setUrl(submittedUrl)
+    setError(null)
     setPhase('processing')
 
-    // Fire the (mock) API call in background while animation plays
-    extractDNA(submittedUrl).then(setDna)
+    extractDNA(submittedUrl)
+      .then(setDna)
+      .catch((err: Error) => {
+        setError(err.message || 'No se pudo analizar la URL. Intentá de nuevo.')
+        setPhase('landing')
+      })
   }
 
   function handleProcessingComplete() {
@@ -41,6 +47,7 @@ export default function Home() {
     setPhase('landing')
     setUrl('')
     setDna(null)
+    setError(null)
   }
 
   return (
@@ -53,7 +60,7 @@ export default function Home() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <URLInput onSubmit={handleURLSubmit} />
+          <URLInput onSubmit={handleURLSubmit} error={error} />
         </motion.div>
       )}
 

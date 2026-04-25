@@ -7,6 +7,7 @@ import clsx from 'clsx'
 
 interface URLInputProps {
   onSubmit: (url: string) => void
+  error?: string | null
 }
 
 const EXAMPLE_URLS = [
@@ -16,7 +17,7 @@ const EXAMPLE_URLS = [
   'notion.so',
 ]
 
-export default function URLInput({ onSubmit }: URLInputProps) {
+export default function URLInput({ onSubmit, error }: URLInputProps) {
   const [url, setUrl] = useState('')
   const [focused, setFocused] = useState(false)
 
@@ -99,6 +100,17 @@ export default function URLInput({ onSubmit }: URLInputProps) {
             </button>
           </div>
         </form>
+
+        {/* Error */}
+        {error && (
+          <motion.p
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-sm text-red-400 text-center"
+          >
+            {error}
+          </motion.p>
+        )}
 
         {/* Examples */}
         <div className="flex items-center gap-2 flex-wrap justify-center">
