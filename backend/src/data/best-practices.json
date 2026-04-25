@@ -1,0 +1,61 @@
+{
+  "linkedin": {
+    "tone": "profesional, informativo y cercano",
+    "recommendedLength": { "min": 1200, "max": 1600, "unit": "chars" },
+    "hashtags": { "min": 3, "max": 5 },
+    "structure": {
+      "hook": "Primera línea que genere curiosidad o plantee un problema relevante (sin emojis excesivos)",
+      "body": "Desarrollo con valor concreto: lecciones, datos, experiencia. Párrafos cortos, máx 3 líneas.",
+      "cta": "Llamada a la acción clara: comentar, compartir o visitar un link"
+    },
+    "format": {
+      "emojis": "Moderado — 1-2 máximo para jerarquía visual",
+      "lineBreaks": "Párrafos cortos con espacio entre ellos",
+      "lists": "Bullet points o numerados para listicles",
+      "firstLine": "Debe terminar abruptamente para generar el 'ver más'"
+    },
+    "bestPostTimes": ["Martes 08:00-10:00", "Miércoles 10:00-12:00", "Jueves 09:00-11:00"],
+    "avoidances": ["Tono excesivamente comercial", "Posts sin estructura", "Más de 5 hashtags"]
+  },
+  "instagram": {
+    "tone": "visual, aspiracional, auténtico y cercano",
+    "captionLength": {
+      "visible": 138,
+      "maximum": 2200,
+      "recommendation": "Gancho en los primeros 138 chars, desarrollo opcional después"
+    },
+    "hashtags": { "min": 10, "max": 30, "placement": "Al final del caption o en primer comentario" },
+    "structure": {
+      "hook": "Primeras palabras impactantes o pregunta directa al usuario",
+      "body": "Historia breve o descripción del visual. Emojis para separar secciones.",
+      "cta": "Acción concreta: guardar, etiquetar, responder a la pregunta"
+    },
+    "format": {
+      "emojis": "Frecuente — refuerzan el tono y segmentan el texto",
+      "lineBreaks": "Espaciado visual entre bloques",
+      "hashtags": "Mezcla de nicho (#brandVoice), medios (#marketing) y amplios (#socialmedia)"
+    },
+    "bestPostTimes": ["Lunes-Viernes 11:00-13:00", "Lunes-Viernes 19:00-21:00", "Sábado 10:00-11:00"],
+    "avoidances": ["Captions sin gancho inicial", "Más de 30 hashtags", "Links en caption (no funcionan)"]
+  },
+  "facebook": {
+    "tone": "conversacional, comunitario y accesible",
+    "recommendedLength": {
+      "highEngagement": { "min": 40, "max": 80, "unit": "chars" },
+      "standard": { "min": 80, "max": 500, "unit": "chars" }
+    },
+    "hashtags": { "min": 1, "max": 3, "note": "Menos es más en Facebook" },
+    "structure": {
+      "hook": "Pregunta directa a la comunidad o afirmación polémica pero constructiva",
+      "body": "Contexto breve. Los links funcionan y generan preview automático.",
+      "cta": "Invitar a comentar, compartir experiencia o visitar link"
+    },
+    "format": {
+      "emojis": "Moderado — refuerzan emoción sin saturar",
+      "links": "Incluir links directamente (generan preview rico)",
+      "community": "Mencionar a la audiencia directamente: 'ustedes', 'nuestra comunidad'"
+    },
+    "bestPostTimes": ["Miércoles 11:00-13:00", "Jueves y Viernes 13:00-16:00", "Sábado 12:00-13:00"],
+    "avoidances": ["Posts demasiado largos sin valor", "Más de 3 hashtags", "Tono excesivamente formal"]
+  }
+}
