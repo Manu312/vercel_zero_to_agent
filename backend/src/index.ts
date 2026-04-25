@@ -3,6 +3,8 @@ import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { agentRoutes } from './routes/agent.js'
 
+
+
 // Validate required env vars at startup
 if (!process.env.AI_GATEWAY_API_KEY) {
   console.error('AI_GATEWAY_API_KEY is not set. Set it in your .env file.')
