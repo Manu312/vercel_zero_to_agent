@@ -54,6 +54,7 @@ export type AppPhase =
 export type ProcessingStep =
   | 'scraping'
   | 'colors'
-  | 'dna'
   | 'strategy'
+  | 'content'
+  | 'images'
   | 'done'

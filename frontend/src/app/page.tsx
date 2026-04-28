@@ -19,13 +19,17 @@ export default function Home() {
     setUrl(submittedUrl)
     setError(null)
     setPhase('processing')
+    setDna(null)
 
-    extractDNA(submittedUrl)
-      .then(setDna)
-      .catch((err: Error) => {
-        setError(err.message || 'No se pudo analizar la URL. Intentá de nuevo.')
-        setPhase('landing')
-      })
+    try {
+      const result = await extractDNA(submittedUrl)
+      setDna(result)
+      setPhase('result')
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'No se pudo analizar la URL. Intentá de nuevo.'
+      setError(message)
+      setPhase('landing')
+    }
   }
 
   function handleProcessingComplete() {
